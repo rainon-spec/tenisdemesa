@@ -1,4 +1,5 @@
 import { Tabs } from 'expo-router';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function TabLayout() {
@@ -6,6 +7,14 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: '#ffd33d',
+        headerStyle: {
+          backgroundColor: '#565b62'
+        },
+        headerShadowVisible: false,
+        headerTintColor: '#fffdfd',
+        tabBarStyle: {
+        backgroundColor: '#565b62',
+        }
       }}
     >
       <Tabs.Screen
@@ -23,6 +32,17 @@ export default function TabLayout() {
           title: 'Sobre',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="toDoList"
+        options={{
+          title: 'Information',
+          tabBarIcon: ({ color, focused }) => (
+            <MaterialIcons name={focused ? 'lightbulb-circle' : 'lightbulb'} color={color} size={24} />
+
           ),
         }}
       />
