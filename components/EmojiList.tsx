@@ -1,34 +1,60 @@
-import { useState } from "react"
-import { ImageSourcePropType, StyleSheet, FlatList, Platform, Pressable } from "react-native"
-import { Image } from 'expo-image';
+import { useState } from "react";
+import {
+  ImageSourcePropType,
+  StyleSheet,
+  FlatList,
+  Platform,
+  Pressable,
+} from "react-native";
+import { Image } from "expo-image";
 
 type Props = {
-   onSelect: (image: ImageSourcePropType) => void;
-   onCloseModal: () => void;
+  onSelect: (image: ImageSourcePropType) => void;
+  onCloseModal: () => void;
 };
 
 export default function EmojiList({ onSelect, onCloseModal }: Props) {
-    const [emoji] = useState<ImageSourcePropType[]>([
-      require("../assets/images/emoj1.png"),
-      require("../assets/images/emoj2.png"),
-      require("../assets/images/emoj3.png"),
-      require("../assets/images/emoj4.png"),
-      require("../assets/images/emoj5.png"),
-      require("../assets/images/emoj6.png"),
-    ]);
+  const [emoji] = useState<ImageSourcePropType[]>([
+    require("../assets/images/emoji1.png"),
+    require("../assets/images/emoji2.png"),
+    require("../assets/images/emoji3.png"),
+    require("../assets/images/emoji4.png"),
+    require("../assets/images/emoji5.png"),
+    require("../assets/images/emoji6.png"),
+  ]);
 
   return (
     <FlatList
       horizontal
-      showsHorizontalScrollIndicator={Platform.OS === 'web'}
+      showsHorizontalScrollIndicator={Platform.OS === "web"}
       data={emoji}
-      contentContainerStyte={styles.listContainer}
-      renderItem={({ item, index }) => {
+      contentContainerStyle={styles.listContainer}
+      renderItem={({ item }) => (
         <Pressable
-         onPress={()  => }
-           onSelect(item);
-           onCloseModal();
-        }}>
-
+          onPress={() => {
+            onSelect(item);
+            onCloseModal();
+          }}
+        >
+          <Image source={item} style={styles.image} />
+        </Pressable>
+      )}
+    />
   );
 }
+
+const styles = StyleSheet.create({
+  listContainer: {
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
+    paddingHorizontal: 20,
+    flexDirection: "row",
+    alignContent: "center",
+    justifyContent: "space-between",
+  },
+  image: {
+    width: 100,
+    height: 100,
+    marginRight: 20,
+  },
+});
