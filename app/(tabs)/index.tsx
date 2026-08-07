@@ -16,7 +16,7 @@ import EmojiSticker from '@/components/EmojiSticker';
 const PlaceholderImage = require('@/assets/images/tdm10.jpg');
 
 export default function Index() {
-  const imageRef = useRef<View>(null);
+  const imageRef = useRef<any>(null);
 
   const [selectedImage, setSelectedImage] = useState<string | undefined>();
   const [showAppOptions, setShowAppOptions] = useState(false);
@@ -48,16 +48,15 @@ export default function Index() {
 
   const onSaveImageAsync = async () => {
     try {
-      if (!imageRef.current) return;
-
       const localUri = await captureRef(imageRef.current, {
         height: 440,
         quality: 1,
       });
 
       await MediaLibrary.saveToLibraryAsync(localUri);
-
-      alert('Imagem salva com sucesso!');
+      if (localUri){
+        alert('Imagem salva com sucesso!');
+      }
     } catch (error) {
       console.log(error);
       alert('Erro ao salvar a imagem.');
@@ -77,9 +76,12 @@ export default function Index() {
     setIsModalVisible(false);
   };
 
+  if (status === null){
+    requestPermission();
+  }
+
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
         <View style={styles.imageContainer}>
           <View ref={imageRef} collapsable={false}>
             <ImageViewer
@@ -138,7 +140,6 @@ export default function Index() {
             onCloseModal={onModalClose}
           />
         </EmojiPicker>
-      </View>
     </GestureHandlerRootView>
   );
 }
