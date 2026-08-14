@@ -1,6 +1,7 @@
 import { Tabs } from 'expo-router';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Entypo from '@expo/vector-icons/Entypo';
 
 export default function TabLayout() {
   return (
@@ -20,7 +21,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: 'Início',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
           ),
@@ -39,9 +40,20 @@ export default function TabLayout() {
       <Tabs.Screen
         name="toDoList"
         options={{
-          title: 'Information',
+          title: 'Atletas Preferidos',
           tabBarIcon: ({ color, focused }) => (
             <MaterialIcons name={focused ? 'lightbulb-circle' : 'lightbulb'} color={color} size={24} />
+
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="buscaCep"
+        options={{
+          title: 'Localização',
+          tabBarIcon: ({ color, focused }) => (
+            <Entypo name={focused ? 'location' : 'location-pin'} color={color} size={24} />
 
           ),
         }}

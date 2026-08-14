@@ -7,16 +7,16 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Lista de Tarefas</Text>
+      <Text style={styles.titulo}>Lista de Mesa-Tenistas Favoritos</Text>
 
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Digite uma tarefa..."
+          placeholder="Digite um atleta..."
           value={novaTarefa}
           onChangeText={setNovaTarefa}
         />
-        <Button title="Adicionar" onPress={adicionarTarefa} />
+        <Button title="Adicionar" onPress={adicionarTarefa} color={"#rgb(0, 79, 182)"}/>
       </View>
 
       <FlatList
